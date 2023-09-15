@@ -60,33 +60,6 @@ function startQuiz() {
     showQuestion();
 }
 
-function showQuestion() {
-    resetState();
-    let currentQuestion = questions[currentQuestionIndex];
-    let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
-
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.innerHTML = answer.text;
-        button.classList.add('btn')
-        answewrButton.appendChild(button);
-        if(answer.correct){
-            button.dataset.correct = answer.correct
-        }
-        button.addEventListener('click',selectAnswer)
-    });
-    
-}
-// Function  resetState()
-
-function resetState() {
-    nextButton.style.display= 'none'
-    while(answewrButton.firstChild){
-        answewrButton.removeChild(answewrButton.firstChild);
-    }
-
-//                                                  function selectAnswer()
 
 function selectAnswer(e){
     const selectedBtn = e.target;
@@ -105,18 +78,50 @@ function selectAnswer(e){
     });
     nextButton.style.display ='block'
 }
+
+
+
+function showQuestion() {
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerHTML = answer.text;
+        button.classList.add('btn')
+        answewrButton.appendChild(button);
+        if(answer.correct){
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+    });
+    
+}
+// Function  resetState()
+
+function resetState () {
+    nextButton.style.display= 'none'
+    while(answewrButton.firstChild){
+        answewrButton.removeChild(answewrButton.firstChild);
+    }
+}
+//                                                  function selectAnswer()
+
+
 // selectAnswer()
 
 // Function  showScore()
 
-// function showScore(){
-//     resetState();
-//     questionElement.innerHTML = `You Scored ${score} out of ${questions.length}`;
-//     nextButton.innerHTML = 'Play Again';
-//     nextButton.style.display = 'block'
+function showScore(){
+    resetState();
+    questionElement.innerHTML = `You Scored ${score} out of ${questions.length}`;
+    nextButton.innerHTML = 'Play Again';
+    nextButton.style.display = 'block'
 
 
-// }
+}
 
 
 
@@ -153,7 +158,7 @@ startQuiz()
 
 
 
-}
+
 
 
 
